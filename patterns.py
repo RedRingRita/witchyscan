@@ -12,7 +12,7 @@ patterns = {
         "Secrets codés en dur": r"""
             \$                                               # variable PHP
             (password|pass|pwd|secret|token|username|user)   # nom sensible
-            \s*=\s*                                          # affectation
+            \s*=\s*                                          # Le signe = peut être entouré d’espaces (ou non), donc ça matche password=, password =, etc.
             (
                 ['"].+?['"]                                  # valeur codée en dur
                 |                                            # OU
@@ -29,8 +29,8 @@ patterns = {
         "Manipulation de fichier": r"\b(open|os\.remove|os\.unlink|shutil\.rmtree|os\.rename|tempfile\.NamedTemporaryFile)\b",  # Opérations fichiers
         "Cryptographie faible": r"\b(hashlib\.md5|hashlib\.sha1|md5|sha1)\b",  # Algorithmes cryptographiques faibles
         "Secrets codés en dur": r"""
-            (?i)    # ignore la casse (PASSWORD, Password, password seront valides)
-            ^\s*
+            (?i)       # ignore la casse (PASSWORD, Password, password seront valides)
+            ^\s*       # ^ signifie début de ligne, \s* autorise les espaces ou tabulations éventuelles avant la variable.
             (password|pass|pwd|secret|token|username|user)
             \s*=\s*
             (
@@ -47,9 +47,9 @@ patterns = {
         "Manipulation de fichier": r"\b(cp|mv|rm|touch|mkdir|rmdir|cat|echo|printf)\b",  # Commandes basiques de manipulation fichiers
         "Cryptographie faible": r"\b(md5sum|sha1sum|openssl md5|openssl sha1)\b",  # Outils cryptographiques faibles
         "Secrets codés en dur": r"""
-            (?i)    # ignore la casse (PASSWORD, Password, password seront valides)
+            (?i)
             ^\s*
-            (export\s+)?
+            (export\s+)?    # Le mot-clé export (avec au moins un espace après) est optionnel
             (password|pass|pwd|secret|token|username|user)
             \s*=\s*
             ['"][^'"]+['"]
