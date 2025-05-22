@@ -3,6 +3,17 @@ import sys
 import re
 import os
 
+def afficher_banniere():
+    print(r"""
+   \ \        / _)  |          |              ___|                    
+    \ \  \   /   |  __|   __|  __ \   |   | \___ \   __|   _` |  __ \ 
+     \ \  \ /    |  |    (     | | |  |   |       | (     (   |  |   |
+      \_/\_/    _| \__| \___| _| |_| \__, | _____/ \___| \__,_| _|  _|
+                                     ____/                            
+             🧙 WitchyScan - Scan occulte de code source
+""")
+
+
 # Dictionnaire des patterns à détecter, classés par langage et catégorie de vulnérabilité
 patterns = {
     "php": {
@@ -154,6 +165,7 @@ def scan_file(filepath):
 
 # -- Point d'entrée du script --
 if __name__ == "__main__":
+    afficher_banniere()
     # Vérifie que l'utilisateur passe bien un argument (le fichier à analyser)
     if len(sys.argv) != 2:
         print("Usage : python3 vuln_file_revue_v6.py <fichier>")
