@@ -57,7 +57,15 @@ def scan_file(filepath):
 
             # -- Analyse des motifs dans la ligne --
 
-            for category, pattern in patterns[language].items():
+            # Compilation automatique des regex avec re.VERBOSE
+            compiled_patterns = {}
+            
+            for lang, rules in patterns.items():
+                compiled_patterns[lang] = {}
+                for category, pattern in rules.items():
+                    compiled_patterns[lang][category] = re.compile(pattern, re.VERBOSE | re.IGNORECASE)
+
+            for category, pattern in compiled_patterns[language].items():
                 if re.search(pattern, lineContent):
                     # Ajoute une alerte détectée
                     alerts.append((i, category, lineContent.strip()))
