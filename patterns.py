@@ -9,6 +9,7 @@ patterns = {
         "Requête SQL brute": r"(mysql_query|mysqli?_query|pg_query|sqlite_query)",  # Fonctions de requêtes SQL brutes
         "Manipulation de fichier": r"\b(fopen|file_put_contents|file_get_contents|unlink|include|require|include_once|require_once)\b",  # Fonctions de gestion des fichiers et inclusion
         "Cryptographie faible": r"\b(md5|sha1)\b",  # Algorithmes cryptographiques considérés faibles
+        "Port lisible": r"socket\.bind\s*\(\s*\(?['\"]?[\d\.]*['\"]?\s*,\s*\d+\)?\s*\)",
         "Secrets codés en dur": r"""
             \$                                               # variable PHP
             (password|pass|pwd|secret|token|username|user)   # nom sensible
@@ -28,6 +29,7 @@ patterns = {
         "Requête SQL brute": r"\b(sqlite3\.connect|psycopg2\.connect|MySQLdb\.connect|pymysql\.connect)\b",  # Connexions à des bases de données
         "Manipulation de fichier": r"\b(open|os\.remove|os\.unlink|shutil\.rmtree|os\.rename|tempfile\.NamedTemporaryFile)\b",  # Opérations fichiers
         "Cryptographie faible": r"\b(hashlib\.md5|hashlib\.sha1|md5|sha1)\b",  # Algorithmes cryptographiques faibles
+        "Port lisible": r"socket\.bind\s*\(\s*\(?['\"]?[\d\.]*['\"]?\s*,\s*\d+\)?\s*\)",
         "Secrets codés en dur": r"""
             (?i)       # ignore la casse (PASSWORD, Password, password seront valides)
             ^\s*       # ^ signifie début de ligne, \s* autorise les espaces ou tabulations éventuelles avant la variable.
@@ -46,6 +48,7 @@ patterns = {
         "Commande système": r"\b(rm\s+-rf|wget|curl|nc|netcat|bash|sh|chmod|chown|dd|mkfs|mount|umount|eval|exec)\b",  # Commandes système potentiellement dangereuses
         "Manipulation de fichier": r"\b(cp|mv|rm|touch|mkdir|rmdir|cat|echo|printf)\b",  # Commandes basiques de manipulation fichiers
         "Cryptographie faible": r"\b(md5sum|sha1sum|openssl md5|openssl sha1)\b",  # Outils cryptographiques faibles
+        "Port lisible": r"\b(nc|ncat|socat|ssh|python|ruby|perl)\b[^\n]*(?:-p\s*|\s)(\d+)",
         "Secrets codés en dur": r"""
             (?i)
             ^\s*
