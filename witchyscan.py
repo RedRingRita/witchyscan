@@ -78,9 +78,9 @@ def scan_file(filepath):
                     alerts_per_line[i] = alerts_per_line.get(i, 0) + 1
 
     # Affichage des résultats d'analyse
-    print(f"\n📄 Analyse du fichier ({language}) : {filepath}")
+    print(f"\n{Colors.MAGENTA}📄 Analyse du fichier ({language}) : {filepath}{Colors.RESET}")
     if not alerts:
-        print("✅ Aucun motif suspect détecté.")
+        print(f"\n{Colors.GREEN} ✅Aucun motif suspect détecté.{Colors.RESET}")
     else:
         for line_num, category, content in alerts:
             print(f"  [Ligne {line_num:03}] [{category}] {content}")
