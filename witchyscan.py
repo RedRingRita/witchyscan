@@ -37,7 +37,7 @@ def detect_language(filename):
 def scan_file(filepath):
     # Vérifie si le fichier existe bien
     if not os.path.isfile(filepath):
-        print(f"❌ Fichier introuvable : {filepath}")
+        print(Colors.warning(f"❌ Fichier introuvable : {filepath}"))
         return
 
     alerts = []  # Liste pour stocker les alertes détectées (numéro de ligne, catégorie, contenu)
@@ -46,7 +46,7 @@ def scan_file(filepath):
 
     language = detect_language(filepath)  # Détection du langage du fichier
     if not language:
-        print(f"⚠️ Langage non reconnu pour le fichier : {filepath}")
+        print(Colors.warning(f"Langage non reconnu pour le fichier : {filepath}"))
         return
 
     # Ouverture du fichier en lecture, en ignorant les erreurs d'encodage
@@ -80,13 +80,14 @@ def scan_file(filepath):
     # Affichage des résultats d'analyse
     print(f"\n{Colors.MAGENTA}📄 Analyse du fichier ({language}) : {filepath}{Colors.RESET}")
     if not alerts:
-        print(f"\n{Colors.GREEN} ✅Aucun motif suspect détecté.{Colors.RESET}")
+        print(f"\n{Colors.GREEN}✅Aucun motif suspect détecté.{Colors.RESET}")
+        print(Colors.error("C'est juste un test"))
     else:
         for line_num, category, content in alerts:
-            print(f"  [Ligne {line_num:03}] [{category}] {content}")
+            print(f"  [Ligne {line_num:03}] {Colors.alert(category, content)}")
 
     # -- Statistiques récapitulatives --
-    print("\n📊 Statistiques de l’analyse :")
+    print(f"\n{Colors.YELLOW}📊 Statistiques de l’analyse :{Colors.RESET}")
     print(f"  - Nombre total de lignes : {total_lines}")
     print(f"  - Nombre total d’alertes détectées : {len(alerts)}")
     print("  - Répartition des alertes par catégorie :")

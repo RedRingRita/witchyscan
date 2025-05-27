@@ -22,25 +22,34 @@ class Colors:
     # Mapping par niveau de log ou type d'alerte
     @staticmethod
     def info(text):
-        return f"{Colors.CYAN}[INFO]{Colors.RESET} {text}"
+        return f"{Colors.CYAN}[INFO ℹ️]{Colors.RESET} {text}"
 
     @staticmethod
     def success(text):
-        return f"{Colors.GREEN}[OK]{Colors.RESET} {text}"
+        return f"{Colors.GREEN}[OK ✅]{Colors.RESET} {text}"
 
     @staticmethod
     def warning(text):
-        return f"{Colors.YELLOW}[WARN]{Colors.RESET} {text}"
+        return f"{Colors.YELLOW}[WARN ⚠️ ]{Colors.RESET} {text}"
 
     @staticmethod
     def error(text):
-        return f"{Colors.RED}[ERROR]{Colors.RESET} {text}"
+        return f"{Colors.RED}[ERROR ❌]{Colors.RESET} {text}"
 
     @staticmethod
     def critical(text):
-        return f"{Colors.BOLD_RED}[CRITICAL]{Colors.RESET} {text}"
+        return f"{Colors.BOLD_RED}[CRITICAL ☠️]{Colors.RESET} {text}"
 
     @staticmethod
     def alert(category, text):
-        return f"{Colors.BOLD_MAGENTA}[ALERTE: {category}]{Colors.RESET} {text}"
+        icons = {
+            "Hardcoded": "🔐",
+            "Suspicious": "🕵️",
+            "Eval": "🧪",
+            "Injection": "💉",
+            "Obfuscation": "🧩",
+            "Entrée utilisateur": "💻"
+        }
+        icon = icons.get(category, "🚨")
+        return f"{Colors.BOLD_MAGENTA}{icon} [ALERTE: {category}]{Colors.RESET} {text}"
 
