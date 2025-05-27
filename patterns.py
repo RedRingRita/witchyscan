@@ -21,7 +21,7 @@ patterns = {
                 \(\s*['"].+?['"]\s*\)
             )
         """,
-    },
+        },
     "python": {
         "Entrée utilisateur": r"\b(input|sys\.argv|argparse\.ArgumentParser|flask\.request|django\.http\.HttpRequest)\b",  # Entrées utilisateur via input ou frameworks web
         "Commande système": r"\b(os\.system|subprocess\.Popen|subprocess\.call|eval|exec|pexpect\.spawn)\b",  # Exécution de commandes système
@@ -58,4 +58,18 @@ patterns = {
             ['"][^'"]+['"]
         """,
         },
+    "html": {
+    "inline_js": r"<script[^>]*>.*?</script>",  # JS directement dans HTML
+    "form_insecure": r"<form[^>]*action=['\"]http://",  # formulaire en HTTP
+    "inline_event": r"<[^>]+on\w+=['\"]",  # onClick, onLoad, etc.
+    "hardcoded_credentials": r"(user(name)?|pass(word)?)=['\"]\w+['\"]",  # login/pass codés en dur
+    "meta_refresh_redirect": r"<meta[^>]*http-equiv=['\"]refresh['\"]",  # redirection automatique
+        },
+    "javascript": {
+    "eval_usage": r"\beval\s*\(",  # usage d'eval
+    "document_write": r"document\.write\s*\(",  # document.write
+    "innerHTML": r"\.innerHTML\s*=",  # injection DOM
+    "localStorage_secret": r"localStorage\.setItem\s*\(\s*['\"](token|secret|auth)['\"]",  # secret stocké en localStorage
+    "hardcoded_api_key": r"(api|auth|token)[\w_]*\s*=\s*['\"][A-Za-z0-9_\-]{16,}['\"]"  # API key en dur
+        }
 }

@@ -5,6 +5,7 @@ import os
 
 from patterns import patterns
 from ignore_comments import init_comment_state, should_ignore_line
+from colors import Colors
 
 def afficher_banniere():
     print(r"""
@@ -26,6 +27,10 @@ def detect_language(filename):
         return "python"
     elif ext in ["sh", "bash"]:
         return "bash"
+    elif ext in ["html", "htm"]:
+        return "html"
+    elif ext == "js":
+        return "javascript"
     return None  # Langage non reconnu
 
 # Fonction principale pour scanner un fichier à la recherche de motifs dangereux
