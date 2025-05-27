@@ -42,14 +42,22 @@ class Colors:
 
     @staticmethod
     def alert(category, text):
-        icons = {
-            "Hardcoded": "🔐",
-            "Suspicious": "🕵️",
-            "Eval": "🧪",
-            "Injection": "💉",
-            "Obfuscation": "🧩",
-            "Entrée utilisateur": "💻"
+        # Icônes associées à plusieurs catégories
+        icon_map = {
+            "💉": ["Injection de commande", "injection SQL"],
+            "🔐": ["hardcoded credential"],
+            "🕵️":["System command"],
+            "📂": ["File manipulation"],
+            "🔑": ["Weak cryptography"],
+            "🔌": ["Readable port"],
+            "🖮": ["User entry"]
         }
+
+        # Génération automatique du mapping catégorie → icône
+        icons = {cat: icon for icon, cats in icon_map.items() for cat in cats}
+
+        # Récupération de l'icône ou valeur par défaut
         icon = icons.get(category, "🚨")
-        return f"{Colors.BOLD_MAGENTA}{icon} [ALERTE: {category}]{Colors.RESET} {text}"
+
+        return f"{Colors.BOLD_MAGENTA}{icon} [{category}]{Colors.RESET} {text}"
 
