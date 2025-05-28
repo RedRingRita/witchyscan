@@ -44,13 +44,14 @@ class Colors:
     def alert(category, text):
         # Icônes associées à plusieurs catégories
         icon_map = {
-            "💉": ["Injection de commande", "injection SQL"],
-            "🔐": ["hardcoded credential"],
-            "🕵️":["System command"],
+            "💉": ["Unprepared statement", "Raw SQL query", "InnerHTML"],
+            "🔐": ["Hardcoded credential", "Hardcoded API key", "Local storage secret"],
+            "🕵️":["System command","Form insecure"],
             "📂": ["File manipulation"],
             "🔑": ["Weak cryptography"],
-            "🔌": ["Readable port"],
-            "🖮": ["User entry"]
+            "🔌": ["Readable port", "Meta refresh redirect"],
+            "🖮":  ["User entry", "Inline JS", "Inline event"],
+            "👎": ["Eval usage", "Document write"]
         }
 
         # Génération automatique du mapping catégorie → icône
