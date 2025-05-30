@@ -6,4 +6,5 @@ C'est un outils permettant d'accélerer la revue de code ou pour vous aider dans
 
 Il détecte automatique le type de fichier (via son exntesion) qu'on lui met en paramètre et affiche les statistiques récoltées (tout le monde aime les statistiques).
 
-![2025-05-30 16_45_34-ParrotOS_RRR  En fonction  - Oracle VirtualBox](https://github.com/user-attachments/assets/09de39e0-f935-4601-8d63-2b021217cbb9)
+
+![2025-05-30 16_45_34-ParrotOS_RRR  En fonction  - Oracle VirtualBox](https://github.com/user-attachments/assets/6bf0a79e-37e8-4984-a5dd-31c448d450b8)
