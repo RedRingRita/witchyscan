@@ -8,6 +8,8 @@ from patterns import patterns
 from ignore_comments import init_comment_state, should_ignore_line
 from colors import Colors
 from output_csv import output_csv
+from output_txt import output_txt
+from display import afficher_resultats
 
 def afficher_banniere():
     print(r"""
@@ -43,7 +45,7 @@ def parse_args():
     """
     parser = argparse.ArgumentParser(description="🔍 WitchyScan - Scanner de code magique")
     parser.add_argument("target", help="Fichier ou dossier à scanner")
-    parser.add_argument("-o", "--output", choices=["csv"], help="Format d’export (ex : -o csv)")
+    parser.add_argument("-o", "--output", choices=["csv", "txt"], help="Format d’export (ex : -o csv/txt)")
     return parser.parse_args()
 
 # Fonction principale pour scanner un fichier à la recherche de motifs dangereux
@@ -91,33 +93,15 @@ def scan_file(filepath):
                     alerts_per_line[i] = alerts_per_line.get(i, 0) + 1
 
     # Affichage des résultats d'analyse
-    print(f"\n{Colors.MAGENTA}📄 Analyse du fichier ({language}) : {filepath}{Colors.RESET}")
-    if not alerts:
-        print(f"\n{Colors.GREEN}✅Aucun motif suspect détecté.{Colors.RESET}")
-        print(Colors.error("C'est juste un test"))
-    else:
-        for line_num, category, content in alerts:
-            print(f"  [Ligne {line_num:03}] {Colors.alert(category, content)}")
-
-    # -- Statistiques récapitulatives --
-    print(f"\n{Colors.YELLOW}📊 Statistiques de l’analyse :{Colors.RESET}")
-    print(f"  - Nombre total de lignes : {total_lines}")
-    print(f"  - Nombre total d’alertes détectées : {len(alerts)}")
-    print("  - Répartition des alertes par catégorie :")
-    for cat, count in alerts_per_category.items():
-        print(f"    • {cat} : {count}")
-
-    print("  - Lignes avec le plus d’alertes :")
-    # Affiche les 5 lignes avec le plus d'alertes, triées par nombre d'alertes décroissant
-    top_lines = sorted(alerts_per_line.items(), key=lambda x: x[1], reverse=True)[:5]
-    for line_num, count in top_lines:
-        print(f"    • Ligne {line_num} : {count} alertes")
+    afficher_resultats(filepath, language, total_lines, alerts, alerts_per_category, alerts_per_line)
     return {
         "filepath": filepath,
         "language": language,
-        "alerts": alerts
+        "total_lines": total_lines,
+        "alerts": alerts,
+        "alerts_per_category": alerts_per_category,
+        "alerts_per_line": alerts_per_line,
     }
-
 # -- Point d'entrée du script --
 if __name__ == "__main__":
     afficher_banniere()
@@ -150,3 +134,5 @@ if __name__ == "__main__":
     # Si l’option -o csv a été précisée et qu’on a des résultats → on exporte !
     if output_format == "csv" and all_results:
         output_csv(all_results)
+    elif output_format == "txt" and all_results:
+        output_txt(all_results)

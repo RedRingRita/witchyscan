@@ -19,7 +19,7 @@ def output_csv(all_results):
     with open(export_name, "w", newline='', encoding="utf-8") as csvfile:
         writer = csv.writer(csvfile)
 
-        # 🧾 Écrit l’en-tête du tableau CSV
+        # Écrit l’en-tête du tableau CSV
         writer.writerow(["Fichier", "Langage", "Ligne", "Catégorie", "Contenu"])
 
         # 📦 Parcourt tous les fichiers scannés
