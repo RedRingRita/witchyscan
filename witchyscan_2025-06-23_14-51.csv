@@ -1,0 +1,14 @@
+Fichier,Langage,Ligne,Catégorie,Contenu
+../testfile/save.php,php,17,User entry,"$site=preg_replace('/[^A-Za-z0-9\-\.\_]/', '',$_GET[""site""]);"
+../testfile/save.php,php,18,User entry,"$idclient=preg_replace('/[^A-Za-z0-9\-\.\@\_]/', '',$_GET['idclient']);"
+../testfile/save.php,php,19,User entry,"$token=preg_replace('/[^A-Za-z0-9\-\.\_]/', '',$_POST[""token""]);"
+../testfile/save.php,php,32,User entry,if(isset($_GET['idclient']) && isset($_GET['site']))
+../testfile/save.php,php,34,File manipulation,"include ""/var/www/bdd.php"";"
+../testfile/save.php,php,36,Unprepared statement,"$reponse = $bdd->query(""select Token from Tokencyberbox WHERE CyberboxIdClient='$idclient' AND Token='$token' LIMIT 1"");"
+../testfile/save.php,php,61,User entry,"$target_path = $target_path .$idclient.""-"".$site.""-"". basename( $_FILES['uploadedfile']['name']);"
+../testfile/save.php,php,64,User entry,$type=mime_content_type($_FILES['uploadedfile']['tmp_name']);
+../testfile/save.php,php,69,User entry,$fileSize = $_FILES['uploadedfile']['size'];
+../testfile/save.php,php,73,User entry,"if(move_uploaded_file($_FILES['uploadedfile']['tmp_name'], $target_path))"
+../testfile/save.php,php,75,User entry,"echo ""The file "".  basename( $_FILES['uploadedfile']['name'])."
+../testfile/save.php,php,80,User entry,"if(move_uploaded_file($_FILES['uploadedfile']['tmp_name'], $target_path))"
+../testfile/save.php,php,82,User entry,"echo ""The file "".  basename( $_FILES['uploadedfile']['name'])."
