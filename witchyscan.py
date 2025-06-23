@@ -2,10 +2,12 @@
 import sys
 import re
 import os
+import argparse #Pour gérer les arguments en ligne de commande
 
 from patterns import patterns
 from ignore_comments import init_comment_state, should_ignore_line
 from colors import Colors
+from output_csv import output_csv
 
 def afficher_banniere():
     print(r"""
@@ -32,6 +34,17 @@ def detect_language(filename):
     elif ext == "js":
         return "javascript"
     return None  # Langage non reconnu
+
+def parse_args():
+    """
+    Gère les arguments passés au script via la ligne de commande.
+    - target : fichier ou dossier à scanner
+    - -o / --output : format d’export (pour l’instant, seulement 'csv')
+    """
+    parser = argparse.ArgumentParser(description="🔍 WitchyScan - Scanner de code magique")
+    parser.add_argument("target", help="Fichier ou dossier à scanner")
+    parser.add_argument("-o", "--output", choices=["csv"], help="Format d’export (ex : -o csv)")
+    return parser.parse_args()
 
 # Fonction principale pour scanner un fichier à la recherche de motifs dangereux
 def scan_file(filepath):
@@ -100,12 +113,41 @@ def scan_file(filepath):
     for line_num, count in top_lines:
         print(f"    • Ligne {line_num} : {count} alertes")
 
+    return {
+        "filepath": filepath,
+        "language": language,
+        "alerts": alerts
+    }
+
 # -- Point d'entrée du script --
 if __name__ == "__main__":
     afficher_banniere()
-    # Vérifie que l'utilisateur passe bien un argument (le fichier à analyser)
-    if len(sys.argv) != 2:
-        print("Usage : python3 vuln_file_revue_v6.py <fichier>")
-        sys.exit(1)
-    fichier_a_scanner = sys.argv[1]
-    scan_file(fichier_a_scanner)
+
+    # Récupère les arguments de la ligne de commande
+    args = parse_args()
+    target_path = args.target
+    output_format = args.output
+
+    all_results = []
+    
+    if os.path.isfile(target_path):
+        result = scan_file(target_path)
+        if result:
+            all_results.append(result)
+
+    elif os.path.isdir(target_path):
+        print(Colors.info(f"📁 Dossier détecté : analyse récursive en cours...\n"))
+        for root, dirs, files in os.walk(target_path):
+            for file in files:
+                full_path = os.path.join(root, file)
+                if detect_language(full_path):  # on ne scanne que les fichiers reconnus
+                    print(f"\n{Colors.BLUE}=== Analyse de : {full_path} ==={Colors.RESET}")
+                    result = scan_file(full_path)
+                    if result :
+                        all_resultas.append(result)
+    else:
+        print(Colors.error("Le chemin fourni n’est ni un fichier ni un dossier valide."))
+
+    # Si l’option -o csv a été précisée et qu’on a des résultats → on exporte !
+    if output_format == "csv" and all_results:
+        output_csv(all_results)
