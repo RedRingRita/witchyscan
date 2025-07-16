@@ -1,3 +1,5 @@
+Projet à but éducatif.
+
 Cet outil a été conçu pour accélérer les revues de code en détectant automatiquement des patterns de code potentiellement vulnérables dans des fichiers PHP, Python et Bash.
 
 Plutôt que de lire des centaines de lignes à la main, ce script identifie les portions de code sensibles pour vous aider à focaliser votre attention au bon endroit. Idéal pour gagner du temps, améliorer votre rigueur ou simplement éviter de passer à côté d’un appel système mal placé.
